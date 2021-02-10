@@ -161,3 +161,93 @@ const inventory = [
     sold: 8,
   },
 ];
+
+// STRAT 1
+// map? -> voor de hele array
+// bereken per televisie type: hoevel nog te verkopen, met map
+// [{}, {}, {}] -> [21, 0, 7]
+// Alle getallen optellen in de array
+// for loop
+
+
+//1a
+
+function countInventoryToSell (televisions){
+
+ console.log('sales!',televisions);
+ let totalCount =0
+  // console.log("total count",count)
+
+  for (const television of televisions) {
+    // console.log('TELEVISIONS IN LOOP',
+    //     television.originalStock, television.sold);
+
+    const toSellOfThisType =television.originalStock-television.sold;
+    // console.log(toSellOfThisType);
+
+    totalCount = totalCount + toSellOfThisType
+
+  }
+  // console.log("TOTAL totalCount",totalCount)
+  return totalCount;
+}
+
+const totalCount =countInventoryToSell(inventory)
+
+//-Weergeven op pagina
+//- [x] Rekenwerk verrichten
+//- [x]  Element maken op de HTMP pagina
+//- [x]  Element selecteren waar de count moet worden weergegeven
+//- [x]  textConten aanpassen met de totalCount
+//- [x] Rood maken( al gedaan in CSS)
+
+
+const numberToSell = document.getElementById('numberToSell');
+
+numberToSell.textContent =totalCount
+
+console.log(numberToSell)
+console.log('OUTSIDE?',totalCount);
+
+
+// Opdracht 2a: Gebruik een array-methode om een array te maken met alle tv-type namen.
+// MAP -> [{}, {}, {}] -> ['fancy samsung', 'fancier samsung', 'lg big screen']
+// - [ ] maak variabele voor de uitkomst
+
+// - [x ] inventory.map()
+// - [x ] geef een functie aan map als argument
+// - [x ] voeg de parameter toe (televisie, product)
+// - [ x] zoeken naar de juiste property
+// - [x ] return de juiste property
+// - [x ] log het resultaat
+
+const allTypes = inventory.map((televisie)=>{
+
+  return `${televisie.brand} ${televisie.type}`;
+
+});
+ console.log( "UITKOMST", allTypes)
+
+//Opdracht 2b:** Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die volledig uitverkocht zijn
+//filter
+// - [x ] inventory.filter()
+// - [x ] geef een functie aan filter mee als argument
+// - [x ] voeg de parameter toe (televisie, product)
+// - [ x] zoeken naar de juiste property
+// - [x ] return de juiste property
+// - [X ] check: is deze televisie uitverkocht
+//- [ X] return true or false
+// - [x ] log het resultaat
+
+const soldOut =inventory.filter((televisie)=>{
+  console.log('ORIGINELE VOORRAAD', televisie.originalStock, 'VERKOCHT',televisie.sold,
+  televisie.originalStock===televisie.sold
+  );
+
+return televisie.originalStock === televisie.sold
+
+});
+
+console.log("SOLDOUT",soldOut)
+
+// * **Opdracht 2c:** Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die over AmbiLight beschikken.
